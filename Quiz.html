@@ -23,61 +23,51 @@ var q1 = new Object();
 
 //load qestion [from database, array ...]
 
-function loadNextQuestion(){
+function loadQuestion(){
 //TODO: Load the question into the question object here.
-
+//type  0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
+q1.type = 0; 
+q1.question= "Is the sky blue?";
+q1.answer = Boolean(true);
+q1.points = 5;
 
 }
 
+
+
 function true_false(ans, right_answer){
+//incrementally score the quiz
 max += q1.points;
 
 if (ans == right_answer) {
 total = total + q1.points;
 }
 
+
+document.write(100 * total/max);
 }
 
-//0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
 
-q1.type = 0; 
-q1.question= "Is the sky blue?";
-q1.answer = Boolean(true);
-q1.points = 5;
-
-
+loadQuestion();
 
 //display the question
 
 document.write (q1.question);
 
-// true false question
-
-
-
-//incrementally score the quiz
-
-
-
-
-
-//score quiz
-
-document.write(100 * total/max);
 
 </script>
 
-//select an answer
+
 <form>
 <input type="button" value="True" onclick="true_false(true, q1.answer)"/>
 <input type="button" value="False" onclick="true_false(false, q1.answer)"/>
 </br>
 </br>
-<input type="button" value="Next Question" onclick= "loadNextQuestion()"/>
+<input type="button" value="Next Question" onclick= "loadQuestion()"/>
 
 </form>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Thu Aug 16 13:26:25 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Thu Aug 16 13:57:23 PDT 2012 <!-- hhmts end -->
 </body> </html>
