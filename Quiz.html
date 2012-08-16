@@ -7,15 +7,36 @@
 <h1></h1>
 
 <script language= "javascript" type=text/javascript>
+//step1: perform authentication
+//NOTE be sure to scrub/clean any data before db submission
 
-
+// global variables
 var max= 0;
 var total= 0;
-
 var correct;
 var answer;
 
 var q1 = new Object();
+
+//TODO: create an array of question objects
+
+
+//load qestion [from database, array ...]
+
+function loadNextQuestion(){
+//TODO: Load the question into the question object here.
+
+
+}
+
+function true_false(ans, right_answer){
+max += q1.points;
+
+if (ans == right_answer) {
+total = total + q1.points;
+}
+
+}
 
 //0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
 
@@ -32,19 +53,11 @@ document.write (q1.question);
 
 // true false question
 
-//select an answer
-
-<input type="button" value="True" onclick="answer = Boolean(true);"/>
-<input type="button" value="False" onclick="answer = Boolean(false);"/>
 
 
 //incrementally score the quiz
 
-max += q1.points;
 
-if (answer == q1.answer) {
-total = total + q1.points;
-}
 
 
 
@@ -54,7 +67,17 @@ document.write(100 * total/max);
 
 </script>
 
+//select an answer
+<form>
+<input type="button" value="True" onclick="true_false(true, q1.answer)"/>
+<input type="button" value="False" onclick="true_false(false, q1.answer)"/>
+</br>
+</br>
+<input type="button" value="Next Question" onclick= "loadNextQuestion()"/>
+
+</form>
+
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Thu Aug 16 12:45:12 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Thu Aug 16 13:26:25 PDT 2012 <!-- hhmts end -->
 </body> </html>
