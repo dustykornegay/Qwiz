@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><meta http-equiv="Content-Type" content="text/html; charset=utf-8" <head>
+<title> A Small Quiz</title>
+</head>
+
+<body>
+<h1></h1>
+
+<script language= "javascript" type=text/javascript>
+
+
+var max= 0;
+var total= 0;
+
+var correct;
+var answer;
+
+var q1 = new Object();
+
+//0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
+
+q1.type = 0; 
+q1.question= "Is the sky blue?";
+q1.answer = Boolean(true);
+q1.points = 5;
+
+
+
+//display the question
+
+document.write (q1.question);
+
+// true false question
+
+//select an answer
+
+<input type="button" value="True" onclick="answer = Boolean(true);"/>
+<input type="button" value="False" onclick="answer = Boolean(false);"/>
+
+
+//incrementally score the quiz
+
+max += q1.points;
+
+if (answer == q1.answer) {
+total = total + q1.points;
+}
+
+
+
+//score quiz
+
+document.write(100 * total/max);
+
+</script>
+
+<hr>
+<address></address>
+<!-- hhmts start -->Last modified: Thu Aug 16 12:45:12 PDT 2012 <!-- hhmts end -->
+</body> </html>
