@@ -3,7 +3,7 @@
 <title> A Small Quiz</title>
 </head>
 
-<body>
+<body onLoad= "loadQuestionArray()">
 <h1></h1>
 
 <script language= "javascript" type=text/javascript>
@@ -16,10 +16,10 @@ var total= 0;
 var correct;
 var answer;
 
-var q1 = new Object();
 
-var question_array = new Array();
-var answer_array = new Array();
+
+var question_array = [];
+var answer_array = [];
 
 //TODO: create an array of question objects
 
@@ -28,7 +28,10 @@ var answer_array = new Array();
 
 function loadQuestionArray(){
 //TODO: Load the question into the question object here.
-//type  0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
+//type  0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
+
+var q1 = new Object();
+
 q1.id = 1;
 q1.type = 0; 
 q1.question= "Is the sky blue?";
@@ -39,22 +42,42 @@ q1.points_false = 0;
 
 question_array.push(q1);
 
-q1.id = 2;
+var q2 = new Object();
+
+q2.id = 2;
+q2.type = 0; 
+q2.question= "Is the pope Catholic?";
+q2.answer = Boolean(true);
+q2.points_max = 5;
+q2.points_true = 5;
+q2.points_false = 0;
+
+question_array.push(q2);
+
+var q1 = new Object();
+
+q1.id = 1;
 q1.type = 0; 
-q1.question= "Is the pope Catholic?";
+q1.question= "Does a wild bear poop in the woods?";
 q1.answer = Boolean(true);
 q1.points_max = 5;
 q1.points_true = 5;
-q1.points_false = 0;
+q1.points_false = 0; 
 
 question_array.push(q1);
+
+
+
+
 
 }
 
 
 function loadQuestion(){
-q1 = question_array.pop();
-document.getElementById("myquestion").innerHTML= q1.question;
+if (question_array.length >= 1){
+var q = new Object();
+q = question_array.pop();
+document.getElementById("myquestion").innerHTML= q.question;}
 }
 
 function selectAnswer(ans){
@@ -92,7 +115,6 @@ score = 0;
 
 
 //main begins here
-loadQuestionArray();
 
 loadQuestion();
 
@@ -108,9 +130,8 @@ loadQuestion();
 
 <p> <input type="button" value="False"onclick="selectAnswer(false)"/> </p>
 
-
+<!--
 <p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
-
 <p> <input type="button" value="B"onclick="selectAnswer(2)"/> </p>
 
 <p> <input type="button" value="C"onclick="selectAnswer(3)"/> </p>
@@ -118,7 +139,7 @@ loadQuestion();
 <p> <input type="button" value="D"onclick="selectAnswer(4)"/> </p>
 
 <p> <input type="button" value="E"onclick="selectAnswer(5)"/> </p>
-
+-->
 
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
@@ -127,5 +148,5 @@ loadQuestion();
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Fri Aug 17 10:05:11 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 17 13:10:27 PDT 2012 <!-- hhmts end -->
 </body> </html>
