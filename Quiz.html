@@ -18,12 +18,15 @@ var answer;
 
 var q1 = new Object();
 
+var question_array = new Array();
+var answer_array = new Array();
+
 //TODO: create an array of question objects
 
 
 //load question [from database, array ...]
 
-function loadQuestion(){
+function loadQuestionArray(){
 //TODO: Load the question into the question object here.
 //type  0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
 q1.id = 1;
@@ -34,6 +37,24 @@ q1.points_max = 5;
 q1.points_true = 5;
 q1.points_false = 0; 
 
+question_array.push(q1);
+
+q1.id = 2;
+q1.type = 0; 
+q1.question= "Is the pope Catholic?";
+q1.answer = Boolean(true);
+q1.points_max = 5;
+q1.points_true = 5;
+q1.points_false = 0;
+
+question_array.push(q1);
+
+}
+
+
+function loadQuestion(){
+q1 = question_array.pop();
+document.getElementById("myquestion").innerHTML= q1.question;
 }
 
 function selectAnswer(ans){
@@ -46,14 +67,12 @@ function submitAnswer(question_id, answered){
 
 //add (question_id,answer) to answers array
 
-
-document.getElementById("myanswer").innerHTML= "Percent Correct" , (100 * total/max);
-
 //load next question
+loadQuestion();
 
 }
 
-tally (){
+function tally(){
 max = 0;
 score = 0;
 
@@ -70,20 +89,25 @@ score = 0;
 //display tally
 // document.write ("Your Score For this quiz is: ", score/max);
 }
+
+
+//main begins here
+loadQuestionArray();
+
 loadQuestion();
 
-//display the question
 
-document.write ("<p>", q1.question , "</p>");
 
 
 
 </script>
 
+<i id= "myquestion"> My Question </i>
 
 <form> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
 
 <p> <input type="button" value="False"onclick="selectAnswer(false)"/> </p>
+
 
 <p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
 
@@ -95,6 +119,7 @@ document.write ("<p>", q1.question , "</p>");
 
 <p> <input type="button" value="E"onclick="selectAnswer(5)"/> </p>
 
+
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
 <i id= "myanswer"> </i>
@@ -102,5 +127,5 @@ document.write ("<p>", q1.question , "</p>");
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Fri Aug 17 09:14:43 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 17 10:05:11 PDT 2012 <!-- hhmts end -->
 </body> </html>
