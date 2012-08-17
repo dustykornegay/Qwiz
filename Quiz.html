@@ -21,33 +21,55 @@ var q1 = new Object();
 //TODO: create an array of question objects
 
 
-//load qestion [from database, array ...]
+//load question [from database, array ...]
 
 function loadQuestion(){
 //TODO: Load the question into the question object here.
 //type  0: true false , 1: undefined 2: two choice, 3:three choice, 4:four choice, 5: five choice
+q1.id = 1;
 q1.type = 0; 
 q1.question= "Is the sky blue?";
 q1.answer = Boolean(true);
-q1.points = 5;
+q1.points_max = 5;
+q1.points_true = 5;
+q1.points_false = 0; 
 
 }
 
-
-
-function true_false(ans, right_answer){
-//incrementally score the quiz
-max += q1.points;
-
-if (ans == right_answer) {
-total = total + q1.points;
-}
-
-document.getElementById("myanswer").innerHTML= (100 * total/max);
-
+function selectAnswer(ans){
+answer = ans;
 }
 
 
+function submitAnswer(question_id, answered){
+//get question_id.max_points & question_id.points for answer = answered
+
+//add (question_id,answer) to answers array
+
+
+document.getElementById("myanswer").innerHTML= "Percent Correct" , (100 * total/max);
+
+//load next question
+
+}
+
+tally (){
+max = 0;
+score = 0;
+
+// for each element in answers array 
+//begin for:
+//lookup the points for the best answer & the points for the answer_given
+
+//max += best_answer;
+//score += answer_given;
+
+//end for loop
+
+
+//display tally
+// document.write ("Your Score For this quiz is: ", score/max);
+}
 loadQuestion();
 
 //display the question
@@ -56,18 +78,29 @@ document.write ("<p>", q1.question , "</p>");
 
 
 
-
-
 </script>
 
 
-<form> <p> <input type="button" value="True" onclick="true_false(true,q1.answer)"  /> </p> 
-<p> <input type="button" value="False" onclick="true_false(false,q1.answer)"/> </p>
-<p> <input type="button" value="Next Question" onclick= "loadQuestion()" /> <p>
+<form> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
+
+<p> <input type="button" value="False"onclick="selectAnswer(false)"/> </p>
+
+<p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
+
+<p> <input type="button" value="B"onclick="selectAnswer(2)"/> </p>
+
+<p> <input type="button" value="C"onclick="selectAnswer(3)"/> </p>
+
+<p> <input type="button" value="D"onclick="selectAnswer(4)"/> </p>
+
+<p> <input type="button" value="E"onclick="selectAnswer(5)"/> </p>
+
+<p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
+
 <i id= "myanswer"> </i>
 <form>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Thu Aug 16 20:07:42 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 17 09:14:43 PDT 2012 <!-- hhmts end -->
 </body> </html>
