@@ -43,8 +43,8 @@ if (ans == right_answer) {
 total = total + q1.points;
 }
 
+document.getElementById("myanswer").innerHTML= (100 * total/max);
 
-document.write(100 * total/max);
 }
 
 
@@ -52,22 +52,22 @@ loadQuestion();
 
 //display the question
 
-document.write (q1.question);
+document.write ("<p>", q1.question , "</p>");
+
+
+
 
 
 </script>
 
 
+<form> <p> <input type="button" value="True" onclick="true_false(true,q1.answer)"  /> </p> 
+<p> <input type="button" value="False" onclick="true_false(false,q1.answer)"/> </p>
+<p> <input type="button" value="Next Question" onclick= "loadQuestion()" /> <p>
+<i id= "myanswer"> </i>
 <form>
-<input type="button" value="True" onclick="true_false(true, q1.answer)"/>
-<input type="button" value="False" onclick="true_false(false, q1.answer)"/>
-</br>
-</br>
-<input type="button" value="Next Question" onclick= "loadQuestion()"/>
-
-</form>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Thu Aug 16 13:57:23 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Thu Aug 16 20:07:42 PDT 2012 <!-- hhmts end -->
 </body> </html>
