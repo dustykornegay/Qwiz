@@ -32,7 +32,7 @@ function loadQuestionArray() {
 
 var q1 = new Object();
 
-q1.id = 1;
+q1.id = 3;
 q1.type = 0; 
 q1.question= "Is the sky blue?";
 q1.answer = Boolean(true);
@@ -74,7 +74,10 @@ function loadQuestion() {
 if (question_array.length >= 1){
 var q = new Object();
 q = question_array.pop();
+id = q.id;
+
 document.getElementById("myquestion").innerHTML= q.question;
+
 } else {
 tally();
 }
@@ -108,18 +111,18 @@ max = 0;
 score = 0;
 var Answer = new Object();
 temp = [];
-
+temp1 =[];
 
 // for each element in answers array
-for (i=0; i< (answer_array.length -1) ; i++) {
+for (i=0; i<= (answer_array.length -1) ; i++) {
 
 Answer = answer_array[i];
 
 temp.push(Answer.answer);
-
+temp1.push(Answer.id);
 }
 
-
+document.getElementById("questionID").innerHTML= temp1;
 document.getElementById("myanswer").innerHTML= temp;
 
 
@@ -137,8 +140,6 @@ document.getElementById("myanswer").innerHTML= temp;
 }
 
 
-//main begins here
-
 
 
 
@@ -150,7 +151,7 @@ document.getElementById("myanswer").innerHTML= temp;
 
 <form> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
 
-<p> <input type="button" value="False"onclick="selectAnswer(false)"/> </p>
+<p> <input type="button" value="False"onclick="selectAnswer(false)" id= "B" /> </p>
 
 <!--
 <p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
@@ -165,10 +166,12 @@ document.getElementById("myanswer").innerHTML= temp;
 
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
-<i id= "myanswer"> myAnswer </i>
+
+<p><i id= "questionID"> Question# </i></p>
+<p><i id= "myanswer"> myAnswer </i></p>
 <form>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Fri Aug 17 22:04:26 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Sat Aug 18 10:47:25 PDT 2012 <!-- hhmts end -->
 </body> </html>
