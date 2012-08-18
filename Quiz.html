@@ -15,7 +15,7 @@ var max= 0;
 var total= 0;
 var correct;
 var answer;
-
+var id;
 
 
 var question_array = [];
@@ -77,7 +77,10 @@ function loadQuestion(){
 if (question_array.length >= 1){
 var q = new Object();
 q = question_array.pop();
-document.getElementById("myquestion").innerHTML= q.question;}
+document.getElementById("myquestion").innerHTML= q.question;
+} else {
+tally();
+}
 }
 
 function selectAnswer(ans){
@@ -85,10 +88,13 @@ answer = ans;
 }
 
 
-function submitAnswer(question_id, answered){
-//get question_id.max_points & question_id.points for answer = answered
-
+function submitAnswer(){
 //add (question_id,answer) to answers array
+var myAnswer = new Object();
+myAnswer.id = id;
+myAnswer.answer = answer;
+
+answer_array.push(myAnswer);
 
 //load next question
 loadQuestion();
@@ -98,8 +104,19 @@ loadQuestion();
 function tally(){
 max = 0;
 score = 0;
+var Answer = new Object();
+temp = [];
 
-// for each element in answers array 
+
+// for each element in answers array
+for (i=0; i< (answer_array.length -1) ; i++) {
+
+Answer = answer_array.pop();
+temp.push(Answer.answer);
+}
+
+document.getElementById("myanswer").innerHTML= temp;
+
 //begin for:
 //lookup the points for the best answer & the points for the answer_given
 
@@ -148,5 +165,5 @@ loadQuestion();
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Fri Aug 17 13:16:54 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 17 21:06:03 PDT 2012 <!-- hhmts end -->
 </body> </html>
