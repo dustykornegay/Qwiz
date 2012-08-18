@@ -16,6 +16,7 @@ var total= 0;
 var correct;
 var answer;
 var id;
+var lastquestion = false;
 
 
 var question_array = [];
@@ -79,6 +80,7 @@ id = q.id;
 document.getElementById("myquestion").innerHTML= q.question;
 
 } else {
+lastquestion = true;
 tally();
 }
 
@@ -94,6 +96,7 @@ answer = ans;
 
 
 function submitAnswer(){
+if (!lastquestion){
 //add (question_id,answer) to answers array
 var myAnswer = new Object();
 myAnswer.id = id;
@@ -103,7 +106,7 @@ answer_array.push(myAnswer);
 
 //load next question
 loadQuestion();
-
+}
 }
 
 function tally(){
@@ -173,5 +176,5 @@ document.getElementById("myanswer").innerHTML= temp;
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Sat Aug 18 10:47:25 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Sat Aug 18 10:55:36 PDT 2012 <!-- hhmts end -->
 </body> </html>
