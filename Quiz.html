@@ -26,7 +26,7 @@ var answer_array = [];
 
 //load question [from database, array ...]
 
-function loadQuestionArray(){
+function loadQuestionArray() {
 //TODO: Load the question into the question object here.
 //type  0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
 
@@ -66,14 +66,11 @@ q1.points_false = 0;
 
 question_array.push(q1);
 
-
-
-
-
+loadQuestion();
 }
 
 
-function loadQuestion(){
+function loadQuestion() {
 if (question_array.length >= 1){
 var q = new Object();
 q = question_array.pop();
@@ -81,7 +78,12 @@ document.getElementById("myquestion").innerHTML= q.question;
 } else {
 tally();
 }
+
 }
+
+
+
+
 
 function selectAnswer(ans){
 answer = ans;
@@ -111,11 +113,15 @@ temp = [];
 // for each element in answers array
 for (i=0; i< (answer_array.length -1) ; i++) {
 
-Answer = answer_array.pop();
+Answer = answer_array[i];
+
 temp.push(Answer.answer);
+
 }
 
+
 document.getElementById("myanswer").innerHTML= temp;
+
 
 //begin for:
 //lookup the points for the best answer & the points for the answer_given
@@ -133,7 +139,6 @@ document.getElementById("myanswer").innerHTML= temp;
 
 //main begins here
 
-loadQuestion();
 
 
 
@@ -160,10 +165,10 @@ loadQuestion();
 
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
-<i id= "myanswer"> </i>
+<i id= "myanswer"> myAnswer </i>
 <form>
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Fri Aug 17 21:06:03 PDT 2012 <!-- hhmts end -->
+<!-- hhmts start -->Last modified: Fri Aug 17 22:04:26 PDT 2012 <!-- hhmts end -->
 </body> </html>
