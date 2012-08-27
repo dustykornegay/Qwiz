@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html><meta http-equiv="Content-Type" content="text/html; charset=utf-8" <head>
+<html><meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <head>
 <title> A Small Quiz</title>
 </head>
 
@@ -18,7 +18,7 @@ var answer;
 var id;
 var lastquestion = false;
 
-
+var q;
 var question_array = [];
 var answer_array = [];
 
@@ -37,9 +37,9 @@ q1.id = 3;
 q1.type = 0; 
 q1.question= "Is the sky blue?";
 q1.answer = Boolean(true);
-q1.points_max = 5;
-q1.points_true = 5;
-q1.points_false = 0; 
+q1.points_max = 2;
+q1.points_a = 2;
+q1.points_b = -2; 
 
 question_array.push(q1);
 
@@ -47,11 +47,11 @@ var q1 = new Object();
 
 q1.id = 2;
 q1.type = 0; 
-q1.question= "Is the pope Catholic?";
+q1.question= "Do wild bears live in the woods?";
 q1.answer = Boolean(true);
-q1.points_max = 5;
-q1.points_true = 5;
-q1.points_false = 0;
+q1.points_max = 2;
+q1.points_a = 2;
+q1.points_b = -2; 
 
 question_array.push(q1);
 
@@ -59,11 +59,11 @@ var q1 = new Object();
 
 q1.id = 1;
 q1.type = 0; 
-q1.question= "Does a wild bear poop in the woods?";
+q1.question= "Is the pope Catholic?";
 q1.answer = Boolean(true);
-q1.points_max = 5;
-q1.points_true = 5;
-q1.points_false = 0; 
+q1.points_max = 2;
+q1.points_a = 2;
+q1.points_b = -2;
 
 question_array.push(q1);
 
@@ -72,40 +72,116 @@ loadQuestion();
 
 
 function loadQuestion() {
+
+
+var sel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
+
+var numAns = 2;
+var questions = 3;
+
+
+
+for (j= 0; j< questions; j++) {
 if (question_array.length >= 1){
-var q = new Object();
+q = new Object();
 q = question_array.pop();
 id = q.id;
-
-document.getElementById("myquestion").innerHTML= q.question;
-
-} else {
-lastquestion = true;
-tally();
 }
 
+var p = document.createTextNode( q.question);
+var r = document.createElement("br");
+
+var x= document.body.appendChild(p);
+var x = document.body.appendChild(r);
+
+for (i=0 ; i < numAns ; i++){
+
+    var p = document.createElement("input");
+    p.setAttribute("type", "button");
+    p.setAttribute("value",  sel[i] );
+    p.setAttribute("name", j + sel[i]);
+    p.setAttribute("onclick", selectAnswer(j,i+1));
+
+var r = document.createElement("br");
+
+var x= document.body.appendChild(p);
+var x = document.body.appendChild(r);
+}
+var r = document.createElement("br");
+var x = document.body.appendChild(r);
+
+}
+
+
 }
 
 
 
+function getPoints(ans){
+
+switch (ans) {
+
+case 1:
+  return q.points_a;
+  break;
+
+case 2:
+  return q.points_b;
+  break;
+
+case 3:
+  return q.points_c;
+  break;
+
+case 4:
+  return q.points_d;
+  break;
+
+case 5:
+  return q.points_e;
+  break;
+
+case false:
+  return q.points_false;
+  break;
+
+case true:
+  return q.points_true;
+  break;
 
 
-function selectAnswer(ans){
-answer = ans;
+default:
+  
+  alert("answer not selected");
+  return 0;
+  break;
+
+}
+
+
+}
+
+function selectAnswer(quest, ans){
+//add (question_id,answer) to answers array
+var myAnswer = new Object();
+myAnswer.id = id;
+
+myAnswer.answer = answer;
+
+myAnswer.points = getPoints(answer);
+
+answer_array.push(myAnswer);
+
 }
 
 
 function submitAnswer(){
 if (!lastquestion){
-//add (question_id,answer) to answers array
-var myAnswer = new Object();
-myAnswer.id = id;
-myAnswer.answer = answer;
 
-answer_array.push(myAnswer);
 
 //load next question
-loadQuestion();
+//loadQuestion();
+tally();
 }
 }
 
@@ -115,6 +191,7 @@ score = 0;
 var Answer = new Object();
 temp = [];
 temp1 =[];
+temp2 = [];
 
 // for each element in answers array
 for (i=0; i<= (answer_array.length -1) ; i++) {
@@ -123,10 +200,15 @@ Answer = answer_array[i];
 
 temp.push(Answer.answer);
 temp1.push(Answer.id);
+temp2.push(Answer.points);
+
+score += Answer.points;
 }
 
 document.getElementById("questionID").innerHTML= temp1;
 document.getElementById("myanswer").innerHTML= temp;
+document.getElementById("points").innerHTML= temp2;
+document.getElementById("totalScore").innerHTML= score;
 
 
 //begin for:
@@ -145,18 +227,16 @@ document.getElementById("myanswer").innerHTML= temp;
 
 
 
-
-
-
 </script>
-
+<!--
+<fieldset width = 50>
 <i id= "myquestion"> My Question </i>
 
-<form> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
+<form name= "q_form"> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
 
 <p> <input type="button" value="False"onclick="selectAnswer(false)" id= "B" /> </p>
 
-<!--
+
 <p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
 <p> <input type="button" value="B"onclick="selectAnswer(2)"/> </p>
 
@@ -170,11 +250,13 @@ document.getElementById("myanswer").innerHTML= temp;
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
 
-<p><i id= "questionID"> Question# </i></p>
-<p><i id= "myanswer"> myAnswer </i></p>
-<form>
+<p> Questions:   <i id= "questionID"> </i> </p>
+<p> Your Answers:<i id= "myanswer">   </i> </p>
+<p> Your Points: <i id = "points">    </i> </p>
+<p> TotalScore:  <i id="totalScore">  </i> </p>
+
 
 <hr>
 <address></address>
-<!-- hhmts start -->Last modified: Sat Aug 18 10:55:36 PDT 2012 <!-- hhmts end -->
+
 </body> </html>
