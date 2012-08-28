@@ -33,10 +33,10 @@ function loadQuestionArray() {
 
 var q1 = new Object();
 
-q1.id = 3;
-q1.type = 0; 
+q1.id = 5;
+q1.type = 2; 
 q1.question= "Is the sky blue?";
-q1.answer = Boolean(true);
+q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
 q1.points_b = -2; 
@@ -46,9 +46,9 @@ question_array.push(q1);
 var q1 = new Object();
 
 q1.id = 2;
-q1.type = 0; 
+q1.type = 2; 
 q1.question= "Do wild bears live in the woods?";
-q1.answer = Boolean(true);
+q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
 q1.points_b = -2; 
@@ -58,9 +58,9 @@ question_array.push(q1);
 var q1 = new Object();
 
 q1.id = 1;
-q1.type = 0; 
+q1.type = 2; 
 q1.question= "Is the pope Catholic?";
-q1.answer = Boolean(true);
+q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
 q1.points_b = -2;
@@ -76,17 +76,17 @@ function loadQuestion() {
 
 var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
 
-var numAns = 2;
+
 var questions = 3;
 
 
 
 for (j= 0; j< questions; j++) {
-if (question_array.length >= 1){
+
 q = new Object();
-q = question_array.pop();
+q = question_array[j];
 id = q.id;
-}
+var numAns = q.type;
 
 var p = document.createTextNode( q.question);
 var r = document.createElement("br");
@@ -100,7 +100,7 @@ for (i=1 ; i <= numAns ; i++){
     p.setAttribute("type", "button");
     p.setAttribute("value",  sel[i] );
     p.setAttribute("name", j + sel[i]);
-    p.setAttribute("onclick", selectAnswer(j,i));
+    p.setAttribute("onclick", "selectAnswer(" + j + "," + i + ")" );
 
 var r = document.createElement("br");
 
@@ -163,8 +163,10 @@ default:
 
 function selectAnswer(quest, ans){
 //add (question_id,answer) to answers array
+q = question_array[quest];
+
 var myAnswer = new Object();
-myAnswer.id = quest;
+myAnswer.id = q.id;
 
 myAnswer.answer = ans;
 
@@ -172,17 +174,19 @@ myAnswer.points = getPoints(ans);
 
 answer_array[quest] = myAnswer;
 
+document.getElementById("questionID").innerHTML= q.id;
+document.getElementById("myanswer").innerHTML= ans;
 }
 
 
 function submitAnswer(){
-if (!lastquestion){
+if (!lastquestion){}
 
 
 //load next question
 //loadQuestion();
 tally();
-}
+
 }
 
 function tally(){
@@ -194,7 +198,7 @@ temp1 =[];
 temp2 = [];
 
 // for each element in answers array
-for (i=0; i<= (answer_array.length -1) ; i++) {
+for (i=(answer_array.length -1); i>= 0 ; i--) {
 
 Answer = answer_array[i];
 
