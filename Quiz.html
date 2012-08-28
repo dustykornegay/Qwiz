@@ -74,7 +74,7 @@ loadQuestion();
 function loadQuestion() {
 
 
-var sel = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
+var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
 
 var numAns = 2;
 var questions = 3;
@@ -94,13 +94,13 @@ var r = document.createElement("br");
 var x= document.body.appendChild(p);
 var x = document.body.appendChild(r);
 
-for (i=0 ; i < numAns ; i++){
+for (i=1 ; i <= numAns ; i++){
 
     var p = document.createElement("input");
     p.setAttribute("type", "button");
     p.setAttribute("value",  sel[i] );
     p.setAttribute("name", j + sel[i]);
-    p.setAttribute("onclick", selectAnswer(j,i+1));
+    p.setAttribute("onclick", selectAnswer(j,i));
 
 var r = document.createElement("br");
 
@@ -164,13 +164,13 @@ default:
 function selectAnswer(quest, ans){
 //add (question_id,answer) to answers array
 var myAnswer = new Object();
-myAnswer.id = id;
+myAnswer.id = quest;
 
-myAnswer.answer = answer;
+myAnswer.answer = ans;
 
-myAnswer.points = getPoints(answer);
+myAnswer.points = getPoints(ans);
 
-answer_array.push(myAnswer);
+answer_array[quest] = myAnswer;
 
 }
 
@@ -224,28 +224,8 @@ document.getElementById("totalScore").innerHTML= score;
 // document.write ("Your Score For this quiz is: ", score/max);
 }
 
-
-
-
 </script>
-<!--
-<fieldset width = 50>
-<i id= "myquestion"> My Question </i>
 
-<form name= "q_form"> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
-
-<p> <input type="button" value="False"onclick="selectAnswer(false)" id= "B" /> </p>
-
-
-<p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
-<p> <input type="button" value="B"onclick="selectAnswer(2)"/> </p>
-
-<p> <input type="button" value="C"onclick="selectAnswer(3)"/> </p>
-
-<p> <input type="button" value="D"onclick="selectAnswer(4)"/> </p>
-
-<p> <input type="button" value="E"onclick="selectAnswer(5)"/> </p>
--->
 
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
