@@ -29,36 +29,36 @@ var answer_array = [];
 
 function loadQuestionArray() {
 //TODO: Load the question into the question object here.
-//type  0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
+//type 0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
 
 var q1 = new Object();
 
 q1.id = 5;
-q1.type = 2; 
+q1.type = 2;
 q1.question= "Is the sky blue?";
 q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
-q1.points_b = -2; 
+q1.points_b = -2;
 
 question_array.push(q1);
 
 var q1 = new Object();
 
 q1.id = 2;
-q1.type = 2; 
+q1.type = 2;
 q1.question= "Do wild bears live in the woods?";
 q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
-q1.points_b = -2; 
+q1.points_b = -2;
 
 question_array.push(q1);
 
 var q1 = new Object();
 
 q1.id = 1;
-q1.type = 2; 
+q1.type = 2;
 q1.question= "Is the pope Catholic?";
 q1.answer = 1;
 q1.points_max = 2;
@@ -98,7 +98,7 @@ for (i=1 ; i <= numAns ; i++){
 
     var p = document.createElement("input");
     p.setAttribute("type", "button");
-    p.setAttribute("value",  sel[i] );
+    p.setAttribute("value", sel[i] );
     p.setAttribute("name", j + sel[i]);
     p.setAttribute("onclick", "selectAnswer(" + j + "," + i + ")" );
 
@@ -117,8 +117,6 @@ var x = document.body.appendChild(r);
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 function getPoints(ans){
 
 switch (ans) {
@@ -158,14 +156,6 @@ default:
   return 0;
   break;
 
-=======
-=======
-
-
->>>>>>> Revert "minor changes"
-function selectAnswer(ans){
-answer = ans;
->>>>>>> minor changes
 }
 
 
@@ -224,77 +214,21 @@ document.getElementById("myanswer").innerHTML= temp;
 document.getElementById("points").innerHTML= temp2;
 document.getElementById("totalScore").innerHTML= score;
 
-
-//begin for:
-//lookup the points for the best answer & the points for the answer_given
-
-//max += best_answer;
-//score += answer_given;
-
-//end for loop
-
-
-//display tally
-// document.write ("Your Score For this quiz is: ", score/max);
 }
 
-<<<<<<< HEAD
 </script>
 
-=======
-
-
-
-
-
-
-</script>
-
-<i id= "myquestion"> My Question </i>
-
-<form> <p> <input type="button" value="True" onclick="selectAnswer(true)"  /> </p>
-
-<p> <input type="button" value="False"onclick="selectAnswer(false)" id= "B" /> </p>
-
-<!--
-<p> <input type="button" value="A"onclick="selectAnswer(1)"/> </p>
-<p> <input type="button" value="B"onclick="selectAnswer(2)"/> </p>
-
-<p> <input type="button" value="C"onclick="selectAnswer(3)"/> </p>
-
-<p> <input type="button" value="D"onclick="selectAnswer(4)"/> </p>
-
-<p> <input type="button" value="E"onclick="selectAnswer(5)"/> </p>
--->
->>>>>>> minor changes
 
 <p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
 
 
-<<<<<<< HEAD
-<p> Questions:   <i id= "questionID"> </i> </p>
-<p> Your Answers:<i id= "myanswer">   </i> </p>
-<p> Your Points: <i id = "points">    </i> </p>
-<p> TotalScore:  <i id="totalScore">  </i> </p>
-=======
-<p><i id= "questionID"> Question# </i></p>
-<p><i id= "myanswer"> myAnswer </i></p>
-<<<<<<< HEAD
->>>>>>> minor changes
+<p> Questions: <i id= "questionID"> </i> </p>
+<p> Your Answers:<i id= "myanswer"> </i> </p>
+<p> Your Points: <i id = "points"> </i> </p>
+<p> TotalScore: <i id="totalScore"> </i> </p>
 
 
 <hr>
 <address></address>
-<<<<<<< HEAD
 
-=======
-<!-- hhmts start -->Last modified: Sat Aug 25 10:47:14 PDT 2012 <!-- hhmts end -->
->>>>>>> minor changes
-=======
-<form>
-
-<hr>
-<address></address>
-<!-- hhmts start -->Last modified: Sat Aug 18 10:55:36 PDT 2012 <!-- hhmts end -->
->>>>>>> Revert "minor changes"
 </body> </html>
