@@ -22,6 +22,12 @@ var q;
 var question_array = [];
 var answer_array = [];
 
+var questions;
+var questionsPerPage;
+
+var currentQuestion = 0;
+
+
 //TODO: create an array of question objects
 
 
@@ -30,6 +36,8 @@ var answer_array = [];
 function loadQuestionArray() {
 //TODO: Load the question into the question object here.
 //type 0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
+questions = 5;
+questionsPerPage =3;
 
 var q1 = new Object();
 
@@ -63,7 +71,59 @@ q1.question= "Is the pope Catholic?";
 q1.answer = 1;
 q1.points_max = 2;
 q1.points_a = 2;
+q1.text_a = "TRUE";
 q1.points_b = -2;
+q1.text_b = "FALSE";
+
+question_array.push(q1);
+
+
+var q1 = new Object();
+
+q1.id = 3;
+q1.type = 2;
+q1.question= "Which of these is NOT an animal?";
+q1.answer = 3;
+q1.points_max = 2;
+q1.text_a = "Frog";
+q1.points_b = 0;
+q1.text_b = "Zebra";
+q1.points_c = 2;
+q1.text_c = "Baseball";
+
+question_array.push(q1);
+
+var q1 = new Object();
+
+q1.id = 7;
+q1.type = 3;
+q1.question= "Which of these is an amphibian?";
+q1.answer = 1;
+q1.points_max = 2;
+q1.points_a = 2;
+q1.text_a = "Frog";
+q1.points_b = 0;
+q1.text_b = "Zebra";
+q1.points_c = 0;
+q1.text_c = "Baseball";
+
+question_array.push(q1);
+
+var q1 = new Object();
+
+q1.id = 4;
+q1.type = 4;
+q1.question= "How many psychiatrist does it take to change a lightbulb?";
+q1.answer = 1;
+q1.points_max = 2;
+q1.points_a = 0;
+q1.text[0] = "Frog";
+q1.points_b = 0;
+q1.text[1] = "Zebra";
+q1.points_c = 0;
+q1.text[2] = "Baseball";
+q1.points_d = 2;
+q1.text[3] = "One, but the lightbulb has to want to change.";
 
 question_array.push(q1);
 
@@ -77,12 +137,10 @@ function loadQuestion() {
 var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
 
 
-var questions = 3;
 
+for (j= currentQuestion; j< currentQuestion + questionsPerPage; j++) {
 
-
-for (j= 0; j< questions; j++) {
-
+if (currentQuestion < questions ){
 q = new Object();
 q = question_array[j];
 id = q.id;
@@ -109,9 +167,11 @@ var x = document.body.appendChild(r);
 }
 var r = document.createElement("br");
 var x = document.body.appendChild(r);
-
 }
 
+
+}
+currentQuestion += questionsPerPage;
 
 }
 
@@ -180,12 +240,15 @@ document.getElementById("myanswer").innerHTML= ans;
 
 
 function submitAnswer(){
-if (!lastquestion){}
+//clear old questions
 
 
-//load next question
-//loadQuestion();
+if (currentQuestion < questions){
+//add display new questions
+loadQuestion();
+}else {
 tally();
+}
 
 }
 
