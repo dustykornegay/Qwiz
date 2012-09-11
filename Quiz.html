@@ -18,6 +18,8 @@ var answer;
 var id;
 var lastquestion = false;
 
+var count = 0;
+
 var q;
 var question_array = [];
 var answer_array = [];
@@ -147,6 +149,30 @@ question_array.push(q1);
 loadQuestion();
 }
 
+function clearQuestions() {
+for (j= currentQuestion; j> currentQuestion - questionsPerPage; j--) {
+
+if (currentQuestion < questions ){
+q = new Object();
+q = question_array[j];
+id = q.id;
+var numAns = q.type;
+
+document.body.removeChild();
+document.body.removeChild();
+
+for (i=0 ; i < numAns ; i++){
+document.body.removeChild();
+document.body.removeChild();
+document.body.removeChild();
+
+}
+}
+
+
+}
+
+}
 
 function loadQuestion() {
 
@@ -183,6 +209,7 @@ var r = document.createElement("br");
 var x= document.body.appendChild(p);
 var x = document.body.appendChild(p1);
 var x = document.body.appendChild(r);
+
 }
 var r = document.createElement("br");
 var x = document.body.appendChild(r);
@@ -229,7 +256,7 @@ document.getElementById("myanswer").innerHTML= ans;
 
 function submitAnswer(){
 //clear old questions
-
+clearQuestions();
 
 if (currentQuestion < questions){
 //add display new questions
