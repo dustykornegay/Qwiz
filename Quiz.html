@@ -46,8 +46,12 @@ q1.type = 2;
 q1.question= "Is the sky blue?";
 q1.answer = 1;
 q1.points_max = 2;
-q1.points_a = 2;
-q1.points_b = -2;
+q1.points = [];
+q1.text =[];
+q1.points[0] = 2;
+q1.text[0] = "Yes";
+q1.points[1] = -2;
+q1.text[1] = "No Way";
 
 question_array.push(q1);
 
@@ -58,8 +62,12 @@ q1.type = 2;
 q1.question= "Do wild bears live in the woods?";
 q1.answer = 1;
 q1.points_max = 2;
-q1.points_a = 2;
-q1.points_b = -2;
+q1.points =[];
+q1.text = [];
+q1.points[0] = 2;
+q1.text[0] = "Definitely";
+q1.points[1] = -2;
+q1.text[1] = "No, I don't think so?";
 
 question_array.push(q1);
 
@@ -70,10 +78,12 @@ q1.type = 2;
 q1.question= "Is the pope Catholic?";
 q1.answer = 1;
 q1.points_max = 2;
-q1.points_a = 2;
-q1.text_a = "TRUE";
-q1.points_b = -2;
-q1.text_b = "FALSE";
+q1.points =[];
+q1.text = [];
+q1.points[0] = 2;
+q1.text[0] = "TRUE";
+q1.points[1] = -2;
+q1.text[1] = "FALSE";
 
 question_array.push(q1);
 
@@ -81,15 +91,18 @@ question_array.push(q1);
 var q1 = new Object();
 
 q1.id = 3;
-q1.type = 2;
+q1.type = 3;
 q1.question= "Which of these is NOT an animal?";
 q1.answer = 3;
 q1.points_max = 2;
-q1.text_a = "Frog";
-q1.points_b = 0;
-q1.text_b = "Zebra";
-q1.points_c = 2;
-q1.text_c = "Baseball";
+q1.points =[];
+q1.text = [];
+q1.points[0] = 0;
+q1.text[0] = "Frog";
+q1.points[1] = 0;
+q1.text[1] = "Zebra";
+q1.points[2] = 2;
+q1.text[2] = "Baseball";
 
 question_array.push(q1);
 
@@ -100,12 +113,14 @@ q1.type = 3;
 q1.question= "Which of these is an amphibian?";
 q1.answer = 1;
 q1.points_max = 2;
-q1.points_a = 2;
-q1.text_a = "Frog";
-q1.points_b = 0;
-q1.text_b = "Zebra";
-q1.points_c = 0;
-q1.text_c = "Baseball";
+q1.points =[];
+q1.text = [];
+q1.points[0] = 2;
+q1.text[0] = "Frog";
+q1.points[1] = 0;
+q1.text[1] = "Zebra";
+q1.points[2] = 0;
+q1.text[2] = "Baseball";
 
 question_array.push(q1);
 
@@ -116,13 +131,15 @@ q1.type = 4;
 q1.question= "How many psychiatrist does it take to change a lightbulb?";
 q1.answer = 1;
 q1.points_max = 2;
-q1.points_a = 0;
+q1.points =[];
+q1.text = [];
+q1.points[0] = 0;
 q1.text[0] = "Frog";
-q1.points_b = 0;
+q1.points[1] = 0;
 q1.text[1] = "Zebra";
-q1.points_c = 0;
+q1.points[2] = 0;
 q1.text[2] = "Baseball";
-q1.points_d = 2;
+q1.points[3] = 2;
 q1.text[3] = "One, but the lightbulb has to want to change.";
 
 question_array.push(q1);
@@ -152,17 +169,19 @@ var r = document.createElement("br");
 var x= document.body.appendChild(p);
 var x = document.body.appendChild(r);
 
-for (i=1 ; i <= numAns ; i++){
+for (i=0 ; i < numAns ; i++){
 
     var p = document.createElement("input");
     p.setAttribute("type", "button");
-    p.setAttribute("value", sel[i] );
-    p.setAttribute("name", j + sel[i]);
-    p.setAttribute("onclick", "selectAnswer(" + j + "," + i + ")" );
+    p.setAttribute("value", sel[i+1] );
+    p.setAttribute("name", j + sel[i+1]);
+    p.setAttribute("onclick", "selectAnswer(" + j + "," + (i) + ")" );
 
+var p1= document.createTextNode(q.text[i]);
 var r = document.createElement("br");
 
 var x= document.body.appendChild(p);
+var x = document.body.appendChild(p1);
 var x = document.body.appendChild(r);
 }
 var r = document.createElement("br");
@@ -179,47 +198,16 @@ currentQuestion += questionsPerPage;
 
 function getPoints(ans){
 
-switch (ans) {
-
-case 1:
-  return q.points_a;
-  break;
-
-case 2:
-  return q.points_b;
-  break;
-
-case 3:
-  return q.points_c;
-  break;
-
-case 4:
-  return q.points_d;
-  break;
-
-case 5:
-  return q.points_e;
-  break;
-
-case false:
-  return q.points_false;
-  break;
-
-case true:
-  return q.points_true;
-  break;
-
-
-default:
-  
+if (ans < q.type){
+return q.points[ans];
+} else {
   alert("answer not selected");
   return 0;
-  break;
-
+ }
 }
 
 
-}
+
 
 function selectAnswer(quest, ans){
 //add (question_id,answer) to answers array
@@ -263,6 +251,7 @@ temp2 = [];
 // for each element in answers array
 for (i=(answer_array.length -1); i>= 0 ; i--) {
 
+if (answer_array[i] != undefined){
 Answer = answer_array[i];
 
 temp.push(Answer.answer);
@@ -270,6 +259,7 @@ temp1.push(Answer.id);
 temp2.push(Answer.points);
 
 score += Answer.points;
+}
 }
 
 document.getElementById("questionID").innerHTML= temp1;
