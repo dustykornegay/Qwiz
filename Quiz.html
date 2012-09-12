@@ -11,6 +11,7 @@
 //NOTE be sure to scrub/clean any data before db submission
 
 // global variables
+var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
 var max= 0;
 var total= 0;
 var correct;
@@ -150,22 +151,28 @@ loadQuestion();
 }
 
 function clearQuestions() {
-for (j= currentQuestion; j> currentQuestion - questionsPerPage; j--) {
 
-if (currentQuestion < questions ){
+for (j= currentQuestion - questionsPerPage; j> currentQuestion - (2*questionsPerPage); j--) {
+
+if (j < questions ){
 q = new Object();
 q = question_array[j];
+if (q != undefined) {
 id = q.id;
 var numAns = q.type;
+} else {
+var numAns = 0;}
+var y;
+var z = [];
 
-document.body.removeChild();
-document.body.removeChild();
 
 for (i=0 ; i < numAns ; i++){
-document.body.removeChild();
-document.body.removeChild();
-document.body.removeChild();
-
+ y =document.getElementsByName(String(j) + String(sel[i+1])) ;
+ z.push( String(j) + String(sel[i+1]));
+if (y.parentNode != null){
+y.parentNode.removeChild(y);
+}
+document.getElementById("totalScore").innerHTML= z;
 }
 }
 
@@ -175,11 +182,6 @@ document.body.removeChild();
 }
 
 function loadQuestion() {
-
-
-var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
-
-
 
 for (j= currentQuestion; j< currentQuestion + questionsPerPage; j++) {
 
@@ -200,8 +202,12 @@ for (i=0 ; i < numAns ; i++){
     var p = document.createElement("input");
     p.setAttribute("type", "button");
     p.setAttribute("value", sel[i+1] );
-    p.setAttribute("name", j + sel[i+1]);
+    p.setAttribute("name", String(j) + String(sel[i+1]));
     p.setAttribute("onclick", "selectAnswer(" + j + "," + (i) + ")" );
+
+
+
+
 
 var p1= document.createTextNode(q.text[i]);
 var r = document.createElement("br");
@@ -249,8 +255,13 @@ myAnswer.points = getPoints(ans);
 
 answer_array[quest] = myAnswer;
 
+
+//document.getElementsByName(String(quest) +String(sel[ans+1])).sarcasm = "excellent";
+
+//display answer 
 document.getElementById("questionID").innerHTML= q.id;
 document.getElementById("myanswer").innerHTML= ans;
+document.getElementById("totalScore").innerHTML = String(quest) + String (sel[ans+1]);
 }
 
 
@@ -299,7 +310,7 @@ document.getElementById("totalScore").innerHTML= score;
 </script>
 
 
-<p> <input type="button" value="Submit Answer" onclick="submitAnswer()" /> <p>
+<p> <input type="button" value="Next Page" onclick="submitAnswer()" /> <p>
 
 
 <p> Questions: <i id= "questionID"> </i> </p>
