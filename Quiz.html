@@ -268,6 +268,10 @@ document.getElementById("totalScore").innerHTML = String(quest) + String (sel[an
 function submitAnswer(){
 //clear old questions
 clearQuestions();
+if (currentQuestion + questionPerPage >= questions){
+document.getElementById("questionID").value = "Submit Quiz";
+}
+
 
 if (currentQuestion < questions){
 //add display new questions
@@ -310,7 +314,7 @@ document.getElementById("totalScore").innerHTML= score;
 </script>
 
 
-<p> <input type="button" value="Next Page" onclick="submitAnswer()" /> <p>
+<p> <input type="button" value="Next Page" id ="next" onclick="submitAnswer()" /> <p>
 
 
 <p> Questions: <i id= "questionID"> </i> </p>
