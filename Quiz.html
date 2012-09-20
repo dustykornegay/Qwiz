@@ -26,10 +26,11 @@ var question_array = [];
 var answer_array = [];
 
 var questions;
-var questionsPerPage;
+var questionsPerPage= 2;
 
 var currentQuestion = 0;
 
+var section;
 
 //TODO: create an array of question objects
 
@@ -188,14 +189,20 @@ for (j= currentQuestion; j< currentQuestion + questionsPerPage; j++) {
 if (currentQuestion < questions ){
 q = new Object();
 q = question_array[j];
-id = q.id;
+q_id = q.id;
 var numAns = q.type;
 
+var questiondiv = document.createElement("div");
+questiondiv.setAttribute("id", q_id );
+
+section = document.body.appendChild (questiondiv);
+
 var p = document.createTextNode( q.question);
+ 
 var r = document.createElement("br");
 
-var x= document.body.appendChild(p);
-var x = document.body.appendChild(r);
+var x= section.appendChild(p);
+var x = section.appendChild(r);
 
 for (i=0 ; i < numAns ; i++){
 
@@ -212,13 +219,14 @@ for (i=0 ; i < numAns ; i++){
 var p1= document.createTextNode(q.text[i]);
 var r = document.createElement("br");
 
-var x= document.body.appendChild(p);
-var x = document.body.appendChild(p1);
-var x = document.body.appendChild(r);
+//draw DOM elements to the page
+var x= section.appendChild(p);
+var x = section.appendChild(p1);
+var x = section.appendChild(r);
 
 }
 var r = document.createElement("br");
-var x = document.body.appendChild(r);
+var x = section.appendChild(r);
 }
 
 
@@ -268,7 +276,7 @@ document.getElementById("totalScore").innerHTML = String(quest) + String (sel[an
 function submitAnswer(){
 //clear old questions
 clearQuestions();
-if (currentQuestion + questionPerPage >= questions){
+if (currentQuestion + questionsPerPage >= questions){
 document.getElementById("questionID").value = "Submit Quiz";
 }
 
