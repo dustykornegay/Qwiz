@@ -152,6 +152,7 @@ loadQuestion();
 }
 
 function clearQuestions() {
+section = document.getElement();
 
 for (j= currentQuestion - questionsPerPage; j> currentQuestion - (2*questionsPerPage); j--) {
 
@@ -159,20 +160,16 @@ if (j < questions ){
 q = new Object();
 q = question_array[j];
 if (q != undefined) {
-id = q.id;
+q_id = q.id;
 var numAns = q.type;
+
+var h = document.getElementById(q_id);
+h.parent.removeChild(h);
 } else {
 var numAns = 0;}
-var y;
+
 var z = [];
 
-
-for (i=0 ; i < numAns ; i++){
- y =document.getElementsByName(String(j) + String(sel[i+1])) ;
- z.push( String(j) + String(sel[i+1]));
-if (y.parentNode != null){
-y.parentNode.removeChild(y);
-}
 document.getElementById("totalScore").innerHTML= z;
 }
 }
@@ -211,10 +208,6 @@ for (i=0 ; i < numAns ; i++){
     p.setAttribute("value", sel[i+1] );
     p.setAttribute("name", String(j) + String(sel[i+1]));
     p.setAttribute("onclick", "selectAnswer(" + j + "," + (i) + ")" );
-
-
-
-
 
 var p1= document.createTextNode(q.text[i]);
 var r = document.createElement("br");
