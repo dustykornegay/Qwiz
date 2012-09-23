@@ -155,9 +155,9 @@ question_array.push(q1);
 
 function clearQuestions() {
 
-for (j= (currentQuestion -1) ; j> (currentQuestion - 1) - questionsPerPage; j--) {
+for (j= (currentQuestion -1) ; j >= (currentQuestion - 1) - questionsPerPage; j--) {
 
-if (j < questions -1 ){
+if (j < (questions -1) ){
 q = new Object();
 q = question_array[j];
 if (q != undefined) {
@@ -166,7 +166,9 @@ var numAns = q.type;
 
 var h = document.getElementById(q_id);
 
+if( h != undefined){
 document.body.removeChild(h);
+}
 } else {
 var numAns = 0;}
 
@@ -179,6 +181,21 @@ document.getElementById("totalScore").innerHTML= z;
 
 }
 
+function getQuizState(){
+// 0: Start Quiz, 1:Next Question, 2:Submit
+var quizState;
+
+if (currentQuestion = 0) {
+quizState = "Start Quiz";
+}else  if (currentQuestion <  questions) {
+quizState = "Next Page";
+}else if (currentQuestion >= questions) {
+quizState = "Submit Quiz";
+}
+
+return quizState;
+}
+
 function loadQuestion() {
 
 //current question is incremented so I need to store it's value now
@@ -188,7 +205,7 @@ var temp = currentQuestion;
 for (j= temp; j< temp + questionsPerPage; j++) {
 
 // verify I did not exceed the number of questions
-if (j <= questions ){
+if (j < questions ){
 q = new Object();
 q = question_array[j];
 q_id = q.id;
@@ -278,7 +295,6 @@ clearQuestions();
 if (currentQuestion + questionsPerPage >= questions){
 document.getElementById("questionID").value = "Submit Quiz";
 }
-
 
 if (currentQuestion < questions){
 //add display new questions
