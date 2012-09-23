@@ -11,9 +11,14 @@
 //NOTE be sure to scrub/clean any data before db submission
 
 // global variables
+
+//This array is used to populate the buttons for multiple choice questions.
 var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
+
+//intitialize variables for keeping score
 var max= 0;
 var total= 0;
+
 var correct;
 var answer;
 var id;
@@ -25,7 +30,7 @@ var q;
 var question_array = [];
 var answer_array = [];
 
-var questions;
+var questions= 5;
 var questionsPerPage= 2;
 
 var currentQuestion = 0;
@@ -38,10 +43,9 @@ var section;
 //load question [from database, array ...]
 
 function loadQuestionArray() {
+
 //TODO: Load the question into the question object here.
 //type 0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
-questions = 5;
-questionsPerPage =3;
 
 var q1 = new Object();
 
@@ -90,7 +94,6 @@ q1.points[1] = -2;
 q1.text[1] = "FALSE";
 
 question_array.push(q1);
-
 
 var q1 = new Object();
 
@@ -148,15 +151,13 @@ q1.text[3] = "One, but the lightbulb has to want to change.";
 
 question_array.push(q1);
 
-loadQuestion();
 }
 
 function clearQuestions() {
 
+for (j= (currentQuestion -1) ; j> (currentQuestion - 1) - questionsPerPage; j--) {
 
-for (j= currentQuestion - questionsPerPage; j> currentQuestion - (2*questionsPerPage); j--) {
-
-if (j < questions ){
+if (j < questions -1 ){
 q = new Object();
 q = question_array[j];
 if (q != undefined) {
@@ -164,7 +165,8 @@ q_id = q.id;
 var numAns = q.type;
 
 var h = document.getElementById(q_id);
-h.parent.removeChild(h);
+
+document.body.removeChild(h);
 } else {
 var numAns = 0;}
 
@@ -179,28 +181,30 @@ document.getElementById("totalScore").innerHTML= z;
 
 function loadQuestion() {
 
-for (j= currentQuestion; j< currentQuestion + questionsPerPage; j++) {
+//current question is incremented so I need to store it's value now
+var temp = currentQuestion;
 
-if (currentQuestion < questions ){
+// loop adds questions to the page
+for (j= temp; j< temp + questionsPerPage; j++) {
+
+// verify I did not exceed the number of questions
+if (j <= questions ){
 q = new Object();
 q = question_array[j];
 q_id = q.id;
 var numAns = q.type;
-
 var questiondiv = document.createElement("div");
 questiondiv.setAttribute("id", q_id );
-
 section = document.body.appendChild (questiondiv);
-
 var p = document.createTextNode( q.question);
- 
 var r = document.createElement("br");
 
 var x= section.appendChild(p);
 var x = section.appendChild(r);
 
-for (i=0 ; i < numAns ; i++){
 
+//loop adds answer buttons
+for (i=0 ; i < numAns ; i++){
     var p = document.createElement("input");
     p.setAttribute("type", "button");
     p.setAttribute("value", sel[i+1] );
@@ -214,16 +218,20 @@ var r = document.createElement("br");
 var x= section.appendChild(p);
 var x = section.appendChild(p1);
 var x = section.appendChild(r);
-
 }
+
+// add a line break after each questio 
 var r = document.createElement("br");
 var x = section.appendChild(r);
+
+//increment the question counter
+currentQuestion ++;
 }
 
-
+//end if did not go past last question
 }
-currentQuestion += questionsPerPage;
 
+//end for each question
 }
 
 
