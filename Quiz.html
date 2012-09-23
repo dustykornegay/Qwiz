@@ -6,11 +6,19 @@
 <body onLoad= "loadQuestionArray()">
 <h1></h1>
 
-<script language= "javascript" type=text/javascript>
-//step1: perform authentication
-//NOTE be sure to scrub/clean any data before db submission
+<! //My Apologies for formatting I can't figure out how to get my text >
+<! //editor to support the tab indent style I would prefer> 
 
-// global variables
+<!//start javascript section below>
+<script language= "javascript" type=text/javascript>
+
+// SET THE NUMBER OF QUESTIONS & NUMBER OF QUESTIONS PER PAGE BELOW
+var questions=5;
+var questionsPerPage= 4;
+
+//SET THE NUMBER OF QUESTIONS PER PAGE & NUMBER OF QUESTIONS ABOVE 
+
+//Global variables below
 
 //This array is used to populate the buttons for multiple choice questions.
 var sel = ['0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P'];
@@ -23,49 +31,59 @@ var correct;
 var answer;
 var id;
 var lastquestion = false;
-
 var count = 0;
-
 var q;
 var question_array = [];
 var answer_array = [];
-
-// SET THE NUMBER OF QUESTIONS & NUMBER OF QUESTIONS PER PAGE BELOW
-var questions=5;
-var questionsPerPage= 4;
-
-//SET THE NUMBER OF QUESTIONS PER PAGE & NUMBER OF QUESTIONS ABOVE 
-
 var currentQuestion = 0;
-
 var section;
 
-//TODO: create an array of question objects
+//Global variables above
 
 
-//load question [from database, array ...]
 
 function loadQuestionArray() {
-
-//TODO: Load the question into the question object here.
 //type 0: true false , 1: undefined 2: two choice, 3:three choice,4:four choice, 5: five choice
 
+//begin 1st Question
+
+//create a new object in memory to hold my Question Object
 var q1 = new Object();
 
+//set the hopefully UNIQUE question id 
 q1.id = 5;
+
+//set how many answer choices to display
 q1.type = 2;
 q1.question= "Is the sky blue?";
+
+//sets the correct answer
 q1.answer = 1;
+
+//Maximum score for this question Used to find Quiz Max Score
 q1.points_max = 2;
+
+//Array to store points for each answer
 q1.points = [];
+//Array to store text for each answer
 q1.text =[];
+
+//Points for First Answer
 q1.points[0] = 2;
+//First Answer
 q1.text[0] = "Yes";
+
+//Points for 2nd Answer
 q1.points[1] = -2;
+// 2nd Answer
 q1.text[1] = "No Way";
-
+//store question in the array
 question_array.push(q1);
+//end 1st Question
 
+
+
+// begin  Question2
 var q1 = new Object();
 
 q1.id = 2;
@@ -81,7 +99,9 @@ q1.points[1] = -2;
 q1.text[1] = "No, I don't think so?";
 
 question_array.push(q1);
+// end Question 2
 
+// begin Question3
 var q1 = new Object();
 
 q1.id = 1;
@@ -97,6 +117,8 @@ q1.points[1] = -2;
 q1.text[1] = "FALSE";
 
 question_array.push(q1);
+//end Question 3
+
 
 var q1 = new Object();
 
@@ -338,7 +360,7 @@ document.getElementById("totalScore").innerHTML= score;
 }
 
 </script>
-
+<! //end javascript section above> 
 
 <p> <input type="button" value="Next Page" id ="next" onclick="submitAnswer()" /> <p>
 
