@@ -30,8 +30,11 @@ var q;
 var question_array = [];
 var answer_array = [];
 
-var questions= 5;
-var questionsPerPage= 2;
+// SET THE NUMBER OF QUESTIONS & NUMBER OF QUESTIONS PER PAGE BELOW
+var questions=5;
+var questionsPerPage= 4;
+
+//SET THE NUMBER OF QUESTIONS PER PAGE & NUMBER OF QUESTIONS ABOVE 
 
 var currentQuestion = 0;
 
@@ -157,7 +160,7 @@ function clearQuestions() {
 
 for (j= (currentQuestion -1) ; j >= (currentQuestion - 1) - questionsPerPage; j--) {
 
-if (j < (questions -1) ){
+if (j <= (questions -1) ){
 q = new Object();
 q = question_array[j];
 if (q != undefined) {
