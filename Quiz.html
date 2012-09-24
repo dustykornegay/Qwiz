@@ -206,19 +206,17 @@ document.getElementById("totalScore").innerHTML= z;
 
 }
 
-function getQuizState(){
+function quizState(){
 // 0: Start Quiz, 1:Next Question, 2:Submit
-var quizState;
-
-if (currentQuestion = 0) {
-quizState = "Start Quiz";
+var btnText = document.getElementById("next");
+if (currentQuestion == 0) {
+btnText.value = "Start Quiz";
 }else  if (currentQuestion <  questions) {
-quizState = "Next Page";
+btnText.value = "Next Page";
 }else if (currentQuestion >= questions) {
-quizState = "Submit Quiz";
+btnText.value = "Submit Quiz";
 }
-
-return quizState;
+//update Element here
 }
 
 function loadQuestion() {
@@ -260,6 +258,8 @@ var r = document.createElement("br");
 var x= section.appendChild(p);
 var x = section.appendChild(p1);
 var x = section.appendChild(r);
+
+quizState();
 }
 
 // add a line break after each questio 
@@ -317,9 +317,6 @@ document.getElementById("totalScore").innerHTML = String(quest) + String (sel[an
 function submitAnswer(){
 //clear old questions
 clearQuestions();
-if (currentQuestion + questionsPerPage >= questions){
-document.getElementById("questionID").value = "Submit Quiz";
-}
 
 if (currentQuestion < questions){
 //add display new questions
@@ -362,7 +359,7 @@ document.getElementById("totalScore").innerHTML= score;
 </script>
 <! //end javascript section above> 
 
-<p> <input type="button" value="Next Page" id ="next" onclick="submitAnswer()" /> <p>
+<p> <input type="button" id ="next" onclick="submitAnswer()" /> <p>
 
 
 <p> Questions: <i id= "questionID"> </i> </p>
