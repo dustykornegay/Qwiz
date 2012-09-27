@@ -14,7 +14,7 @@
 
 // SET THE NUMBER OF QUESTIONS & NUMBER OF QUESTIONS PER PAGE BELOW
 var questions=5;
-var questionsPerPage= 4;
+var questionsPerPage= 2;
 
 //SET THE NUMBER OF QUESTIONS PER PAGE & NUMBER OF QUESTIONS ABOVE 
 
@@ -249,6 +249,7 @@ for (i=0 ; i < numAns ; i++){
     p.setAttribute("type", "button");
     p.setAttribute("value", sel[i+1] );
     p.setAttribute("name", String(j) + String(sel[i+1]));
+    p.setAttribute("style.backgroundColor", "#FF0000");
     p.setAttribute("onclick", "selectAnswer(" + j + "," + (i) + ")" );
 
 var p1= document.createTextNode(q.text[i]);
@@ -259,7 +260,7 @@ var x= section.appendChild(p);
 var x = section.appendChild(p1);
 var x = section.appendChild(r);
 
-quizState();
+
 }
 
 // add a line break after each questio 
@@ -268,6 +269,8 @@ var x = section.appendChild(r);
 
 //increment the question counter
 currentQuestion ++;
+
+quizState();
 }
 
 //end if did not go past last question
@@ -359,7 +362,7 @@ document.getElementById("totalScore").innerHTML= score;
 </script>
 <! //end javascript section above> 
 
-<p> <input type="button" id ="next" onclick="submitAnswer()" /> <p>
+<p> <input type="button" id ="next" value="Begin" onclick="submitAnswer()" /> <p>
 
 
 <p> Questions: <i id= "questionID"> </i> </p>
