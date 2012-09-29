@@ -13,7 +13,7 @@
 <script language= "javascript" type=text/javascript>
 
 // SET THE NUMBER OF QUESTIONS & NUMBER OF QUESTIONS PER PAGE BELOW
-var questions=5;
+var questions=6;
 var questionsPerPage= 2;
 
 //SET THE NUMBER OF QUESTIONS PER PAGE & NUMBER OF QUESTIONS ABOVE 
@@ -249,10 +249,11 @@ for (i=0 ; i < numAns ; i++){
     p.setAttribute("type", "button");
     p.setAttribute("value", sel[i+1] );
     p.setAttribute("name", String(j) + String(sel[i+1]));
-    p.setAttribute("style.backgroundColor", "#FF0000");
+    p.setAttribute("style.backgroundColor", '#00dd00');
     p.setAttribute("onclick", "selectAnswer(" + j + "," + (i) + ")" );
 
 var p1= document.createTextNode(q.text[i]);
+
 var r = document.createElement("br");
 
 //draw DOM elements to the page
@@ -260,10 +261,9 @@ var x= section.appendChild(p);
 var x = section.appendChild(p1);
 var x = section.appendChild(r);
 
-
 }
 
-// add a line break after each questio 
+// add a line break after each question 
 var r = document.createElement("br");
 var x = section.appendChild(r);
 
@@ -292,8 +292,6 @@ return q.points[ans];
 }
 
 
-
-
 function selectAnswer(quest, ans){
 //add (question_id,answer) to answers array
 q = question_array[quest];
@@ -308,12 +306,10 @@ myAnswer.points = getPoints(ans);
 answer_array[quest] = myAnswer;
 
 
-//document.getElementsByName(String(quest) +String(sel[ans+1])).sarcasm = "excellent";
-
 //display answer 
-document.getElementById("questionID").innerHTML= q.id;
-document.getElementById("myanswer").innerHTML= ans;
-document.getElementById("totalScore").innerHTML = String(quest) + String (sel[ans+1]);
+//document.getElementById("questionID").innerHTML= q.id;
+//document.getElementById("myanswer").innerHTML= ans;
+//document.getElementById("totalScore").innerHTML = String(quest) + String (sel[ans+1]);
 }
 
 
@@ -362,7 +358,7 @@ document.getElementById("totalScore").innerHTML= score;
 </script>
 <! //end javascript section above> 
 
-<p> <input type="button" id ="next" value="Begin" onclick="submitAnswer()" /> <p>
+<p> <input type="button" id ="next" value="Begin Quiz" onclick="submitAnswer()" /> <p>
 
 
 <p> Questions: <i id= "questionID"> </i> </p>
@@ -372,6 +368,6 @@ document.getElementById("totalScore").innerHTML= score;
 
 
 <hr>
-<address></address>
+
 
 </body> </html>
